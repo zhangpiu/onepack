@@ -1,6 +1,7 @@
-project(elzip)
+cmake_minimum_required(VERSION 3.14)
+project(onepack)
 
-add_subdirectory(extlibs/minizip)
+add_subdirectory(third_party/minizip)
 
 file(GLOB LZIP_HEADERS include/elzip/*.hpp)
 
@@ -34,6 +35,9 @@ target_include_directories(elzip
         ${CMAKE_CURRENT_SOURCE_DIR}/src
 )
 
-set_property(TARGET ${PROJECT_NAME} PROPERTY CXX_STANDARD 17)
-set_property(TARGET ${PROJECT_NAME} PROPERTY CXX_STANDARD_REQUIRED ON)
-set_property(TARGET ${PROJECT_NAME} PROPERTY CXX_EXTENSIONS OFF)
+set_property(TARGET elzip PROPERTY CXX_STANDARD 17)
+set_property(TARGET elzip PROPERTY CXX_STANDARD_REQUIRED ON)
+set_property(TARGET elzip PROPERTY CXX_EXTENSIONS OFF)
+
+add_executable(onepack onepack.cc)
+target_link_libraries(onepack elzip)
